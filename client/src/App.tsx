@@ -1,22 +1,23 @@
+import { Pagination } from '@mui/material';
 import React from 'react';
+import FilterSection from './components/FilterSection';
+import MemoriesList from './components/MemoriesList';
+import Navbar from './components/Navbar';
+import PostForm from './components/PostForm';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <FilterSection />
+      <PostForm />
+      <Pagination count={10} sx={{mt: 2}}/>
+      <MemoriesList />
+      <SignIn />
+      <SignUp />
+    </>
   );
 }
 
