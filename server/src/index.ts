@@ -2,7 +2,9 @@ import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import postsRoutes from '../src/routes/postsRoutes'
+import multer from 'multer';
+import postsRoutes from '../src/routes/postsRoutes';
+import awsS3Routes from './routes/s3BucketRoutes';
 
 const app = express();
 
@@ -26,3 +28,4 @@ app.get('/', (req: Request, res: Response): void => {
 });
 
 app.use('/posts', postsRoutes);
+app.use('/s3_bucket', awsS3Routes);
