@@ -13,29 +13,19 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import * as yup from 'yup';
+import PostService from '../services/post.service';
+import { PostItems } from '../helpers/types';
 
 type Props = {};
-interface PostItem {
-  createdAt: string;
-  likeCount: number;
-  message: string;
-  selectedFile: string;
-  tags: string[];
-  title: string;
-  __v: number;
-  _id: string;
-}
 
 const MemoriesList: React.FC = (props: Props) => {
-  const [postItems, setPostItems] = useState<PostItem[]>([]);
+  const [allPosts, setAllPosts] = useState<PostItems[]>([]);
 
   useEffect(() => {
-    const getPosts = async (): Promise<any> => {
+    const getPosts = async (): Promise<void> => {
       try {
-        const { data } = await axios.get('http://localhost:5000/posts/');
-        console.log(data);
-        setPostItems(data);
+        const postsResponse = await PostService.getPosts();
+        setAllPosts(postsResponse as PostItems[]);
       } catch (err) {
         console.log(err);
       }
@@ -47,8 +37,8 @@ const MemoriesList: React.FC = (props: Props) => {
     <Container sx={{ mt: 8 }}>
       <Paper sx={{ p: 2 }}>
         <Grid container spacing={2}>
-          {postItems.length > 0 &&
-            postItems.map((post, key) => {
+          {allPosts.length > 0 &&
+            allPosts.map((post, key) => {
               return (
                 <Grid key={key} item xs={6}>
                   <Card sx={{ maxWidth: 345 }}>

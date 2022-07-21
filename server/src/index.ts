@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import multer from 'multer';
 import postsRoutes from '../src/routes/postsRoutes';
 import awsS3Routes from './routes/s3BucketRoutes';
 

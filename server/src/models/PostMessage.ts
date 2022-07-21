@@ -10,6 +10,7 @@ interface CreatedAtItem {
 }
 
 interface IPost {
+  creator: string;
   title: string;
   message: string;
   selectedFile: string;
@@ -19,6 +20,7 @@ interface IPost {
 }
 
 const postSchema = new Schema<IPost>({
+  creator: String,
   title: String,
   message: String,
   selectedFile: String,
@@ -35,4 +37,4 @@ const postSchema = new Schema<IPost>({
 
 const PostMessage = mongoose.model('PostMessage', postSchema);
 
-export default PostMessage
+export default PostMessage;
